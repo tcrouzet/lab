@@ -84,6 +84,7 @@ header h1 {
 header h2 {
     font-size: var(--h2-header-size);
     font-weight: 100;
+    margin-bottom: 1rem;
 }
 
 
