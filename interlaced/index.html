@@ -1,0 +1,223 @@
+
+<HTML>
+	<head profile="http://gmpg.org/xfn/11">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<TITLE>Textes entrelacés - Thierry Crouzet - 1996</TITLE>
+<SCRIPT LANGUAGE=JavaScript>
+<!--
+
+var phraseNbr=4
+var phrase= new Array("La lumière asperge le paysage depuis la boule laiteuse du soleil. ",
+		"Deux jeunes filles jouent aux raquettes. ",
+		"Un ULM survole la plage, traînant un panneau publicitaire. ",
+		"Il est deux heures de l'après-midi, pas une ombre, les parasols presque inutiles. ")
+
+var verbeNbr=3
+var verbe= new Array("aime",
+		"rêve",
+		"nage")
+
+var sujetNbr=3
+var sujet= new Array("L'homme",
+		"La jeune fille",
+		"Le soleil")
+
+var predicaNbr=4
+var predica= new Array("bleu",
+		"jaune",
+		"rouge",
+		"azur")
+
+var objetNbr=3
+var objet= new Array("la mer",
+		"le bateau",
+		"le parasol")
+
+col = new Array();
+col[0]="#FF0000"
+col[1]="#FF00FF"
+col[2]="#FFFF00"
+col[3]="#FF8000"
+col[4]="#00FFFF"
+col[5]="#00FF00"
+col[6]="#FF0080"
+col[7]="#0080FF"
+col[8]="#00FF80"
+col[9]="#80FF00"
+
+var ColorNbr=10
+var BackgNbr=7
+var BackgOrder=hasard(BackgNbr)
+var Backg="bk"+BackgOrder+".gif"
+var BackgColorOrder=hasard(ColorNbr)
+var BackgColor=col[BackgColorOrder]
+var Size=hasard(7)+1
+var TextColorOrder=hasard(ColorNbr)
+var TextColor=col[TextColorOrder]
+var PaletteOrder=hasard(2)
+
+var focus=1
+
+function hasard100() {
+	today=new Date()
+	y=today.getTime()
+	z=Math.floor(y/1000)
+	return (y-z*1000)/10
+}
+
+function hasard(x) {
+	return Math.floor(Math.random()*x)
+}
+
+
+function newBackg() {
+	BackgOrder=hasard(BackgNbr)
+	Backg="bk"+BackgOrder+".gif"
+	printTV()
+}
+
+function newColorBackg() {
+	BackgColorOrder=hasard(ColorNbr)
+	BackgColor=col[BackgColorOrder]
+	printTV()
+}
+
+function newSize() {
+	Size=hasard(8)+1
+	printTV()
+}
+
+function newTextColor() {
+	TextColorOrder=hasard(ColorNbr)
+	TextColor=col[TextColorOrder]
+	printTV()
+}
+
+function setColor() {
+	BackgColor=col[BackgColorOrder]
+	TextColor=col[TextColorOrder]
+}
+
+function newPalette() {
+	PaletteOrder=hasard(3)
+	if (PaletteOrder==0) {
+		col[0]="#FF0000"
+		col[1]="#FF00FF"
+		col[2]="#FFFF00"
+		col[3]="#FF8000"
+		col[4]="#00FFFF"
+		col[5]="#00FF00"
+		col[6]="#FF0080"
+		col[7]="#0080FF"
+		col[8]="#00FF80"
+		col[9]="#80FF00"
+	} else if (PaletteOrder==1) {
+		col[0]="#FF99FF"
+		col[1]="#FFCC00"
+		col[2]="#FFFF66"
+		col[3]="#0099FF"
+		col[4]="#CCFF66"
+		col[5]="#00CCFF"
+		col[6]="#0000D0"
+		col[7]="#000088"
+		col[8]="#DD0000"
+		col[9]="#FF00FF"
+	} else {
+		col[0]="#000000"
+		col[1]="#111111"
+		col[2]="#333333"
+		col[3]="#555555"
+		col[4]="#777777"
+		col[5]="#999999"
+		col[6]="#BBBBBB"
+		col[7]="#CCCCCC"
+		col[8]="#EEEEEE"
+		col[9]="#FFFFFF"
+	}
+	setColor()
+	printTV()
+}
+
+function newPhrase() {
+	if (hasard(2)==0) {
+		return sujet[hasard(sujetNbr)]+" "
+			+predica[hasard(predicaNbr)]+" "
+			+verbe[hasard(verbeNbr)]+" "+
+			objet[hasard(objetNbr)]+". "
+	} else {
+		return sujet[hasard(sujetNbr)]+" "
+			+verbe[hasard(verbeNbr)]+" "+
+			objet[hasard(objetNbr)]+" "
+			+predica[hasard(predicaNbr)]+". "
+	}
+}
+
+function newPara() {
+	return newPhrase()+ newPhrase()+phrase[hasard(phraseNbr)]
+}
+
+function newTexte() {
+	var s=""
+	for (i=1;i<24;i++) {
+		s+=newPara()
+	}
+	return s
+}
+
+function hasardTotal() {
+	if (focus==1) {
+		focus=0
+		BackgOrder=hasard(BackgNbr)
+		Backg="bk"+BackgOrder+".gif"
+		BackgColorOrder=hasard(ColorNbr)
+		Size=hasard(8)+1
+		TextColorOrder=hasard(ColorNbr)
+		setColor()
+		printTV()
+	} else {
+		focus=1
+	}
+}
+
+function printNumber() {
+	var tmp=self.haut.document
+	tmp.open()
+	tmp.write("<html><head><title>Textes entrelac�s - 1996 - Thierry Crouzet</title></head>")
+	tmp.write("<body bgcolor=#0 TEXT=#FFFFFF LINK=#FFFFFF VLINK=#FFFFFF ALINK=#FFFFFF>")
+	tmp.write("<center>")
+	tmp.write("<font size=6>"+BackgColorOrder+"</FONT>")
+	tmp.write("<font size=6>"+BackgOrder)
+	tmp.write("<font size=6>"+Size)
+	tmp.write("<font size=6>"+TextColorOrder)
+	tmp.write("<font size=6>"+PaletteOrder)
+	tmp.write("</body></html>")
+	tmp.close()
+}
+
+function printTV() {
+	var tmp=self.une.document
+	tmp.open()
+	tmp.write("<html><head><title>Textes entrelac�s - 1996 - Thierry Crouzet</title></head>")
+	tmp.write("<body background="+Backg+" bgcolor="+BackgColor+" LINK=#0 VLINK=#0 ALINK=#0 onFocus=parent.hasardTotal()>")
+	tmp.write("<font size="+Size+" Color="+TextColor+">")
+	tmp.write(newTexte())
+	tmp.write("</body></html>")
+	tmp.close()
+	printNumber()
+}
+
+//-->
+</SCRIPT></HEAD>
+
+<FRAMESET BORDER=0 ROWS=*,320,* onLoad=printTV()>
+	<FRAME SRC=vide.htm NAME=haut>
+	<FRAMESET COLS=*,640,*>
+		<frame SRC=vide.htm></frame>
+		<FRAME SRC=vide.htm SCROLLING=NO MARGINHEIGHT=0 MARGINWIDTH=0 NORESIZE NAME=une>
+		<frame SRC=vide.htm></frame>
+		</FRAMESET>
+	<FRAME SRC=menu.htm>
+</FRAMESET>
+
+</HTML>
